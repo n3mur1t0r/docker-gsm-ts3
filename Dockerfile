@@ -1,23 +1,16 @@
 FROM lsiobase/xenial
-MAINTAINER sparklyballs
-
-# environment settings
-ARG DEBIAN_FRONTEND="noninteractive"
-ENV LANG="en_US.UTF-8" \
-LANGUAGE="en_US:en"
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="Alexandru Mirică <n3mur1t0r@gmail.com>"
 
-# Set the locale
-RUN \
- locale-gen en_US.UTF-8
+# environment settings
+ARG DEBIAN_FRONTEND="noninteractive"
 
-# install packages
 RUN \
- dpkg --add-architecture i386 && \
+ echo "**** install packages ****" && \
  apt-get update && \
  apt-get install -y \
 	bc \
@@ -35,7 +28,7 @@ RUN \
 	unzip \
 	util-linux \
 	wget && \
-# cleanup
+ echo "**** cleanup ****" && \
  apt-get clean && \
  rm -rf \
 	/var/lib/apt/lists/* \
