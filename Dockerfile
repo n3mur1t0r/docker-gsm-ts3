@@ -25,6 +25,7 @@ RUN \
 	mailutils \
 	postfix \
 	python \
+	tmux \
 	unzip \
 	util-linux \
 	wget && \
